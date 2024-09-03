@@ -2,7 +2,7 @@
 name = "crea_graphics"
 version = "0.1.0"
 description = ""
-authors = ["rosa <rosa@energyandcleanair.org>"]
+authors = ["Data-team <data-team@energyandcleanair.org>"]
 license = "MIT"
 readme = "README.md"
 
@@ -13,6 +13,9 @@ numpy = "^2.0.2"
 matplotlib = "^3.9.2"
 rasterio = "^1.3.10"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.2"
 
 [build-system]
 requires = ["poetry-core"]
