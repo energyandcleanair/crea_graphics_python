@@ -1,0 +1,7 @@
+__pychache__
+
+# VS code
+.vscode
+
+# testing related
+.pytest_cache
