@@ -1,1 +1,1 @@
-from make_geotiff import write_cog
+from .make_geotiff import write_cog
