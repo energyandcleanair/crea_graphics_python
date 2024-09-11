@@ -113,3 +113,9 @@ secondary = ListedColormap(vals)
 secondary_cont = create_continuous_cmap(secondary, N=100)
 secondary_cont_r = create_continuous_cmap(
     ListedColormap(np.flipud(vals)), N=100)
+
+# secondary without black
+
+secondary_noblack = create_continuous_cmap(ListedColormap(vals[1:, :]), N=100)
+secondary_noblack_r = create_continuous_cmap(
+    ListedColormap(np.flipud(vals[1:, :])), N=100)
