@@ -6,8 +6,7 @@ from rasterio.enums import Resampling
 import xarray as xr
 
 
-
-def write_cog(da, vmin=None, vmax=None, cmap='viridis', output_path='output_cog.tif',
+def write_cog(da, vmin=None, vmax=None, cmap=None, output_path='output_cog.tif',
               no_alpha=False, alpha_var=None, alpha_range=None, project_to=None):
     """
     Write a DataArray to a Cloud Optimized GeoTIFF
@@ -21,18 +20,23 @@ def write_cog(da, vmin=None, vmax=None, cmap='viridis', output_path='output_cog.
     vmax : float, optional
         The maximum value to use for normalization
     cmap : str, optional
-        The name of the colormap to use
+        The name of the colormap to use. As default, using 'viridis'.
     output_path : str, optional
         The path to write the GeoTIFF
     """
 
+    # take a copy of the dataarray to avoid modifying the original
+    # (could cause unwanted side effects in calling code)
     dataarray = da.copy()
 
     if project_to is not None:
-        # reproject the data to EPSG:3857
+        # reproject the data to requested projection
         dataarray = dataarray.rio.reproject(project_to)
         if alpha_var is not None:
             alpha_var = alpha_var.rio.reproject(project_to)
+    else:
+        # by default, data should be outputted in EPSG:3857
+        dataarray = dataarray.rio.reproject("EPSG:3857")
 
     # xr.where looses attributes, including crs info
     crs_out = dataarray.rio.crs
@@ -55,6 +59,8 @@ def write_cog(da, vmin=None, vmax=None, cmap='viridis', output_path='output_cog.
     norm = mcolors.Normalize(vmin=vmin, vmax=vmax, clip=True)
 
     # Choose a colormap
+    if cmap is None:
+        cmap = 'viridis'
     cmap = plt.get_cmap(cmap)
 
     # Apply the colormap to the normalized data to get RGBA values
