@@ -3,30 +3,10 @@
 import numpy as np
 from matplotlib.colors import ListedColormap
 from matplotlib.colors import LinearSegmentedColormap
-from matplotlib import colors
 
 from typing import Annotated
 
-
-def create_continuous_cmap(cmap: ListedColormap, N: int = 200) -> LinearSegmentedColormap:
-    """Create continuous colormap from discrete colormap.
-
-    cmap : matplotlib.colors.ListedColormap
-        Discrete colormap.
-    N : int
-        Number of colors in the continuous colormap.
-
-    Returns
-    -------
-    cmap : matplotlib.colors.LinearSegmentedColormap
-        Continuous colormap.
-    """
-
-    cmaplist = [cmap(i) for i in range(cmap.N)]
-
-    return LinearSegmentedColormap.from_list(
-        cmap.name + "_cont", cmaplist, N)
-
+from src.crea_graphics.colors.functions import create_continuous_cmap
 
 # # # # # # # # # # # # # # # #
 # primary colors
@@ -107,12 +87,23 @@ goodbad_lighter_r = create_continuous_cmap(
 
 # replacing the blue with green in the goodbad_ligher colormap
 vals = vals*256
-vals[0, 0:-1] = [39, 165, 156]  # 27a59c
-
+vals[0, 0:-1] = [117, 180, 76]  # 75b44c
 vals = vals/256
+
 goodbad_lightgreen = create_continuous_cmap(ListedColormap(vals), N=250)
 goodbad_lightgreen_r = create_continuous_cmap(
     ListedColormap(np.flipud(vals)), N=250)
+
+
+# instead of green, using the turquoise color
+vals = vals*256
+vals[0, 0:-1] = [39, 165, 156]  # 27a59c
+vals = vals/256
+
+goodbad_lightturq = create_continuous_cmap(ListedColormap(vals), N=250)
+goodbad_lightturq_r = create_continuous_cmap(
+    ListedColormap(np.flipud(vals)), N=250)
+
 
 # # # # # # # # # # # # # # # #
 # secondary  colors
