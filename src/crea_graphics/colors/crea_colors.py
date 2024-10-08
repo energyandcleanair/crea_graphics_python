@@ -109,8 +109,6 @@ goodbad_lighter_r = create_continuous_cmap(
 vals = vals*256
 vals[0, 0:-1] = [39, 165, 156]  # 27a59c
 
-print(vals)
-
 vals = vals/256
 goodbad_lightgreen = create_continuous_cmap(ListedColormap(vals), N=250)
 goodbad_lightgreen_r = create_continuous_cmap(
