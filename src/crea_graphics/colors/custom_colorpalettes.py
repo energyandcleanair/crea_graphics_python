@@ -3,7 +3,7 @@
 import numpy as np
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
-from src.crea_graphics.colors.functions import create_continuous_cmap
+from .functions import create_continuous_cmap
 
 
 # Taking the colors YlGnBu from ColorBrewer (https://colorbrewer2.org/#type=sequential&scheme=YlGnBu&n=9)

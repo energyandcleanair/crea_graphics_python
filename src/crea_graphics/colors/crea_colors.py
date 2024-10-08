@@ -6,7 +6,7 @@ from matplotlib.colors import LinearSegmentedColormap
 
 from typing import Annotated
 
-from src.crea_graphics.colors.functions import create_continuous_cmap
+from .functions import create_continuous_cmap
 
 # # # # # # # # # # # # # # # #
 # primary colors
