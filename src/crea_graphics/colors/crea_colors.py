@@ -46,17 +46,17 @@ vals = vals/256
 
 primary: ListedColormap = ListedColormap(vals, name="primary")
 
-primary_cont: LinearSegmentedColormap = create_continuous_cmap(primary, N=100)
+primary_cont: LinearSegmentedColormap = create_continuous_cmap(primary, N=250)
 primary_cont_r: LinearSegmentedColormap = create_continuous_cmap(
-    ListedColormap(np.flipud(vals)), N=100)
+    ListedColormap(np.flipud(vals)), N=250)
 
 
 # take the blue colors and add white
 vals = np.concatenate((vals[:3, :], np.array([[1, 1, 1, 1]])))
 primary_blue = ListedColormap(vals)
-primary_blue_cont = create_continuous_cmap(primary_blue, N=100)
+primary_blue_cont = create_continuous_cmap(primary_blue, N=250)
 primary_blue_cont_r = create_continuous_cmap(
-    ListedColormap(np.flipud(vals)), N=100)
+    ListedColormap(np.flipud(vals)), N=250)
 
 
 # # # # # # # # # # # # # # # #
@@ -77,20 +77,44 @@ vals = vals/256
 
 goodbad: ListedColormap = ListedColormap(vals)
 
-goodbad_cont: LinearSegmentedColormap = create_continuous_cmap(goodbad, N=100)
+goodbad_cont: LinearSegmentedColormap = create_continuous_cmap(goodbad, N=250)
 goodbad_cont_r: LinearSegmentedColormap = create_continuous_cmap(
-    ListedColormap(np.flipud(vals)), N=100)
+    ListedColormap(np.flipud(vals)), N=250)
 
 # make continous colormap of the red part of the colormap
-goodbad_red_cont = create_continuous_cmap(ListedColormap(vals[3:, :]), N=100)
+goodbad_red_cont = create_continuous_cmap(ListedColormap(vals[3:, :]), N=250)
 goodbad_red_cont_r = create_continuous_cmap(
-    ListedColormap(np.flipud(vals[3:, :])), N=100)
+    ListedColormap(np.flipud(vals[3:, :])), N=250)
 
 # make colormap with all but the darkest blue
-goodbad_light = create_continuous_cmap(ListedColormap(vals[1:, :]), N=100)
+goodbad_light = create_continuous_cmap(ListedColormap(vals[1:, :]), N=250)
 goodbad_light_r = create_continuous_cmap(
-    ListedColormap(np.flipud(vals[1:, :])), N=100)
+    ListedColormap(np.flipud(vals[1:, :])), N=250)
 
+
+# taking the goodbad colormap, but dropping darkest and lightest blue, and
+# making the remaining blue and yellow slightly darker
+vals = np.delete(vals, [0, 2], axis=0)
+vals = vals*256
+vals[0, 0:-1] = [122, 193, 201]  # 7AC1C9 (instead of 8cc9d0)
+vals[1, 0:-1] = [255, 229, 153]  # FFE599 (instead of cce7eb)
+
+vals = vals/256
+goodbad_lighter = create_continuous_cmap(ListedColormap(vals), N=250)
+goodbad_lighter_r = create_continuous_cmap(
+    ListedColormap(np.flipud(vals)), N=250)
+
+
+# replacing the blue with green in the goodbad_ligher colormap
+vals = vals*256
+vals[0, 0:-1] = [39, 165, 156]  # 27a59c
+
+print(vals)
+
+vals = vals/256
+goodbad_lightgreen = create_continuous_cmap(ListedColormap(vals), N=250)
+goodbad_lightgreen_r = create_continuous_cmap(
+    ListedColormap(np.flipud(vals)), N=250)
 
 # # # # # # # # # # # # # # # #
 # secondary  colors
@@ -110,12 +134,12 @@ vals[6, 0:-1] = [255, 242, 204]  # fff2cc
 vals = vals/256
 
 secondary = ListedColormap(vals)
-secondary_cont = create_continuous_cmap(secondary, N=100)
+secondary_cont = create_continuous_cmap(secondary, N=250)
 secondary_cont_r = create_continuous_cmap(
-    ListedColormap(np.flipud(vals)), N=100)
+    ListedColormap(np.flipud(vals)), N=250)
 
 # secondary without black
 
-secondary_noblack = create_continuous_cmap(ListedColormap(vals[1:, :]), N=100)
+secondary_noblack = create_continuous_cmap(ListedColormap(vals[1:, :]), N=250)
 secondary_noblack_r = create_continuous_cmap(
-    ListedColormap(np.flipud(vals[1:, :])), N=100)
+    ListedColormap(np.flipud(vals[1:, :])), N=250)
