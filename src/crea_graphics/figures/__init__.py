@@ -1,0 +1,1 @@
+from .figtools import add_logo
