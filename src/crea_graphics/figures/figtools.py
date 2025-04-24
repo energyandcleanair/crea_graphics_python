@@ -1,6 +1,8 @@
 from PIL import Image
 import os
 
+import numpy as np
+
 def add_logo(fig, left=0.85, bottom=0.02, logo_scale=1):
     """ Add the CREA logo to the figure.
 

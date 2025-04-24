@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "crea_graphics"
-version = "0.2.0"
+version = "0.2.1"
 description = ""
 authors = ["Data-team <data-team@energyandcleanair.org>"]
 license = "MIT"
