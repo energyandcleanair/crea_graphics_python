@@ -7,7 +7,8 @@ import xarray as xr
 
 
 def write_cog(da, vmin=None, vmax=None, cmap=None, output_path='output_cog.tif',
-              no_alpha=False, alpha_var=None, alpha_range=None, project_to=None):
+              no_alpha=False, alpha_var=None, alpha_range=None, project_to=None,
+              resampling='nearest'):
     """
     Write a DataArray to a Cloud Optimized GeoTIFF
 
@@ -23,6 +24,9 @@ def write_cog(da, vmin=None, vmax=None, cmap=None, output_path='output_cog.tif',
         The name of the colormap to use. As default, using 'viridis'.
     output_path : str, optional
         The path to write the GeoTIFF
+    resampling : str, optional
+        The resampling method to use when generating different overview 
+        levels. Default is 'nearest'. For info see https://guide.cloudnativegeo.org/cloud-optimized-geotiffs/cogs-overview_resampling.html
     """
 
     # take a copy of the dataarray to avoid modifying the original
