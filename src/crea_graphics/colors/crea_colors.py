@@ -140,7 +140,7 @@ secondary_noblack_r = create_continuous_cmap(
 # combining good vs bad with secondary colors
 # # # # # # # # # # # # # # # #
 
-N = 10
+N = 11
 vals = np.ones((N, 4))*256
 vals[0, 0:-1] = [53, 65, 108]   # #35416C
 vals[1, 0:-1] = [140, 201, 208]  # 8cc9d0
