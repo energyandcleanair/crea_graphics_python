@@ -2,7 +2,7 @@
 
 [[package]]
 name = "affine"
-version = "2.4.0"
+version = "2.4.1"
 description = "Matrices describing affine transformation of the plane"
 optional = false
 python-versions = ">=3.7"
