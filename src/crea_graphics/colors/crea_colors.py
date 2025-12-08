@@ -132,3 +132,33 @@ secondary_cont_r = create_continuous_cmap(
 secondary_noblack = create_continuous_cmap(ListedColormap(vals[1:, :]), N=250)
 secondary_noblack_r = create_continuous_cmap(
     ListedColormap(np.flipud(vals[1:, :])), N=250)
+
+
+# # # long color scale
+
+# # # # # # # # # # # # # # # #
+# combining good vs bad with secondary colors
+# # # # # # # # # # # # # # # #
+
+N = 10
+vals = np.ones((N, 4))*256
+vals[0, 0:-1] = [53, 65, 108]   # #35416C
+vals[1, 0:-1] = [140, 201, 208]  # 8cc9d0
+vals[2, 0:-1] = [204, 231, 235]  # cce7eb
+vals[3, 0:-1] = [255, 242, 204]  # fff2cc
+vals[4, 0:-1] = [246, 178, 107]  # f6b26b
+vals[5, 0:-1] = [204, 0, 0]     # #cc0000
+vals[6, 0:-1] = [153, 0, 0]     # #990000
+vals[7, 0:-1] = [116, 27, 71]     # #741b47
+vals[8, 0:-1] = [53, 28, 117]     # #351c75
+vals[9, 0:-1] = [0, 0, 0]       # #000000
+
+
+
+vals = vals/256
+
+long: ListedColormap = ListedColormap(vals)
+
+long_cont: LinearSegmentedColormap = create_continuous_cmap(long, N=250)
+long_cont_r: LinearSegmentedColormap = create_continuous_cmap(
+    ListedColormap(np.flipud(vals)), N=250)
